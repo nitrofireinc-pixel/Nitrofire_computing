@@ -36,7 +36,7 @@ npx wrangler dev
 
 `wrangler.jsonc` names the Worker **`nitrofire-computing`**, which is the live Worker for https://nitrofirecomputing.com.
 
-**`npx wrangler deploy` replaces that Worker.** Do not run it until you intend to replace the live site. This repo’s setup does not declare a custom domain or route. Confirm the existing `nitrofirecomputing.com` binding in the Cloudflare dashboard before and after the first deploy; Wrangler can overwrite routes that are listed in config, and this config lists none.
+**`npx wrangler deploy` replaces that Worker.** The config binds two custom domains, `nitrofirecomputing.com` and `www.nitrofirecomputing.com`. Wrangler replaces that Worker’s custom-domain set with the hostnames in `routes`, so both must stay listed. `license.nitrofirecomputing.com` is a different Worker (`rgbmatrixfx-license`) and is not in this file. `workers_dev` and `preview_urls` stay enabled, matching the Worker before this repo’s first deploy.
 
 1. `npx wrangler login` with the account that owns the Worker.
 2. `npm run build`
