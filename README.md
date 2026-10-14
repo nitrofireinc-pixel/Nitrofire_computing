@@ -13,7 +13,7 @@ npm run dev
 
 Open http://localhost:3000.
 
-`/rgbmatrixfx` redirects to `/software`. In `next dev` that redirect is client-side. The deployed Worker returns HTTP 301.
+`/` is the RGBMatrixFX page. The studio pitch, including the Our software card, is at `/services`. `/software` and `/rgbmatrixfx` redirect to `/`. In `next dev` those redirects are client-side. The deployed Worker returns HTTP 301.
 
 ## Production build
 
@@ -30,7 +30,7 @@ npm run build
 npx wrangler dev
 ```
 
-`compatibility_date` is `2026-10-13`, the newest date Wrangler 4.150 accepts. `/rgbmatrixfx` and `/rgbmatrixfx/` return 301 to `/software`. Unknown paths return the site 404 page.
+`compatibility_date` is `2026-10-13`, the newest date Wrangler 4.150 accepts. `/software` and `/rgbmatrixfx` (with or without a trailing slash) return 301 to `/`. Files under `/software/` such as screenshots are served as assets. Unknown paths return the site 404 page.
 
 ## Deploy
 
@@ -46,4 +46,4 @@ Nothing in the npm scripts runs a deploy.
 
 ## Why this deploy path
 
-The live site is a prerendered Next.js app (Turbopack `/_next` output, `cf-cache-status: HIT`) with no server data. A static export plus a small Worker for the `/rgbmatrixfx` redirect matches that and deploys with Wrangler. Cloudflare’s current Next.js guide prefers [vinext](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/) for new apps that need the Next server runtime on Workers. This site does not: the pages are static, and the form never leaves the browser. OpenNext would add that same unused server runtime.
+The live site is a prerendered Next.js app (Turbopack `/_next` output, `cf-cache-status: HIT`) with no server data. A static export plus a small Worker for the `/software` and `/rgbmatrixfx` redirects matches that and deploys with Wrangler. Cloudflare’s current Next.js guide prefers [vinext](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/) for new apps that need the Next server runtime on Workers. This site does not: the pages are static, and the form never leaves the browser. OpenNext would add that same unused server runtime.

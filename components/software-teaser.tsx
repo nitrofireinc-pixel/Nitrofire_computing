@@ -37,7 +37,7 @@ export function SoftwareTeaser() {
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/software"
+                  href="/"
                   className={cn(
                     buttonVariants({ size: "lg" }),
                     "bg-[#44d62c] text-[#0b130a] hover:bg-[#5be044]",

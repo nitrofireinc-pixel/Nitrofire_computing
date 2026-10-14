@@ -13,14 +13,14 @@ export const rgb = {
   releases: "https://github.com/nitrofireinc-pixel/RGBMatrixFX/releases/latest",
   source: "https://github.com/nitrofireinc-pixel/RGBMatrixFX",
   license: "https://www.gnu.org/licenses/gpl-3.0.html",
-  page: "/software",
+  page: "/",
 } as const;
 
 export const nav = [
   { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
   { href: "/capabilities", label: "Capabilities" },
   { href: "/work", label: "Engagements" },
-  { href: "/software", label: "Software" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

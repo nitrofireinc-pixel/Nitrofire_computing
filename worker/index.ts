@@ -9,8 +9,8 @@ const worker = {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, "") || "/";
 
-    if (path === "/rgbmatrixfx") {
-      url.pathname = "/software";
+    if (path === "/rgbmatrixfx" || path === "/software") {
+      url.pathname = "/";
       return Response.redirect(url.toString(), 301);
     }
 
