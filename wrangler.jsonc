@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // WARNING: `npx wrangler deploy` replaces the live Worker `nitrofire-computing`.
+  // Custom domains are replaced as a set. Keep both hostnames listed.
+  // license.nitrofirecomputing.com belongs to Worker `rgbmatrixfx-license`.
+  "name": "nitrofire-computing",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-10-13",
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [
+    { "pattern": "nitrofirecomputing.com", "custom_domain": true },
+    { "pattern": "www.nitrofirecomputing.com", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/software", "/software/", "/rgbmatrixfx", "/rgbmatrixfx/"]
+  }
+}
