@@ -22,7 +22,7 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center" aria-label="Nitrofire Computing">
           <Logo priority className="h-14 w-auto sm:h-16" />
         </Link>
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -37,14 +37,8 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className={cn(buttonVariants({ size: "sm" }), "ml-2")}
-          >
-            Start a brief
-          </Link>
         </nav>
-        <details key={pathname} className="group md:hidden">
+        <details key={pathname} className="group lg:hidden">
           <summary
             className={cn(
               buttonVariants({ variant: "outline", size: "icon" }),
@@ -71,12 +65,6 @@ export function SiteHeader() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                className={cn(buttonVariants({ size: "lg" }), "mt-2")}
-              >
-                Start a brief
-              </Link>
             </nav>
           </div>
         </details>

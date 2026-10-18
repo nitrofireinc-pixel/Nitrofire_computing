@@ -10,7 +10,7 @@ export function SoftwareTeaser() {
     <section className="border-t border-border/70">
       <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
         <p className="font-mono text-xs tracking-[0.22em] text-primary uppercase">
-          Our software
+          Flagship
         </p>
         <div className="mt-6 overflow-hidden rounded-2xl border border-[#2b2b33] bg-[#111113] text-[#e8e8ea]">
           <div className="grid items-center gap-8 p-6 sm:p-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10 lg:p-10">
@@ -29,15 +29,16 @@ export function SoftwareTeaser() {
                 </span>
               </div>
               <h2 className="max-w-md text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-                Chroma-style lighting for Linux.
+                Animated lighting for Linux.
               </h2>
               <p className="max-w-md text-sm leading-6 text-[#8c8c96] sm:text-base sm:leading-7">
-                Animated effects for Razer keyboards and mice, set up in a few
-                clicks. Free and open source, built by Nitrofire Computing.
+                Effects for Razer and other compatible keyboards and mice via
+                the OpenRazer driver. Free and open source, from Nitrofire
+                Computing.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/"
+                  href="/rgbmatrixfx"
                   className={cn(
                     buttonVariants({ size: "lg" }),
                     "bg-[#44d62c] text-[#0b130a] hover:bg-[#5be044]",
