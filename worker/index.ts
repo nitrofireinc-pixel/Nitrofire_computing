@@ -4,16 +4,10 @@ interface Env {
   };
 }
 
+// The site is a static export. /software and /rgbmatrixfx are pages.
+// Files under /software/ (screenshots, the social image) are assets.
 const worker = {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url);
-    const path = url.pathname.replace(/\/+$/, "") || "/";
-
-    if (path === "/rgbmatrixfx" || path === "/software") {
-      url.pathname = "/";
-      return Response.redirect(url.toString(), 301);
-    }
-
     return env.ASSETS.fetch(request);
   },
 };

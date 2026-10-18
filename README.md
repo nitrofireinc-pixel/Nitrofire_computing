@@ -2,7 +2,7 @@
 
 Source for [nitrofirecomputing.com](https://nitrofirecomputing.com).
 
-Next.js App Router, Tailwind CSS v4, shadcn/ui, and the Geist and Geist Mono fonts. Pages are statically exported and served by a Cloudflare Worker (Workers static assets). The contact form does not store messages: it validates in the browser, then copies the brief or opens the visitor’s mail client.
+Next.js App Router, Tailwind CSS v4, shadcn/ui, and the Geist and Geist Mono fonts. Pages are statically exported and served by a Cloudflare Worker (Workers static assets). The support form does not store messages: it validates in the browser, then copies the message or opens the visitor’s mail client.
 
 ## Local development
 
@@ -13,7 +13,9 @@ npm run dev
 
 Open http://localhost:3000.
 
-`/` is the RGBMatrixFX page. The studio pitch, including the Our software card, is at `/services`. `/software` and `/rgbmatrixfx` redirect to `/`. In `next dev` those redirects are client-side. The deployed Worker returns HTTP 301.
+`/` introduces Nitrofire Computing and the RGBMatrixFX products. The catalog is `/software`. The product page is `/rgbmatrixfx`. Pricing is `/pricing`. Support is `/support` (`/contact` shows the same page and points canonical URLs at `/support`). Refunds, terms, and privacy are `/refunds`, `/terms`, and `/privacy`.
+
+RGBMatrixFX Pro checkout is `proCheckoutUrl` in `lib/site.ts`. Leave it empty and the buy controls stay on “Coming soon”. Paste a Square payment link there when checkout is ready.
 
 ## Production build
 
@@ -30,7 +32,7 @@ npm run build
 npx wrangler dev
 ```
 
-`compatibility_date` is `2026-10-13`, the newest date Wrangler 4.150 accepts. `/software` and `/rgbmatrixfx` (with or without a trailing slash) return 301 to `/`. Files under `/software/` such as screenshots are served as assets. Unknown paths return the site 404 page.
+`compatibility_date` is `2026-10-13`, the newest date Wrangler 4.150 accepts. `/software` and `/rgbmatrixfx` are pages in the static export. Files under `/software/` such as screenshots are served as assets. Unknown paths return the site 404 page.
 
 ## Deploy
 
