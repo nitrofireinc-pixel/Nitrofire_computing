@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CardSkeleton, ErrorNote } from "@/components/square-card";
-import { donateApi, donateChips, donateEnabled, donateMaxUsd, donateMinUsd } from "@/lib/site";
+import { donateApi, donateChips, donateEnabled, donateMaxUsd, donateMinUsd, site } from "@/lib/site";
 import { api, cardStyle, EMAIL_RE, loadSquare, SDK, type SquareCard, type SquareEnv } from "@/lib/square";
 import { cn } from "cn";
 
@@ -19,9 +19,9 @@ type Session = {
   env: SquareEnv;
   amount: number;
 };
-type Result = { amount: number; emailed: boolean; test: boolean };
+type Result = { amount: number; email: string; emailed: boolean; test: boolean };
 type Step = "amount" | "card" | "done";
-type FieldErrors = { amount?: string; email?: string };
+type FieldErrors = { amount?: string; email?: string; name?: string };
 
 const AMOUNT_RE = /^\d{1,7}(\.\d{1,2})?$/;
 const fmt = (cents: number) =>
@@ -138,16 +138,19 @@ function Donate({ className, label }: { className?: string; label: string }) {
     if (busyRef.current) return;
     const errs: FieldErrors = { amount: amountError(amount) };
     const em = email.trim().toLowerCase();
-    if (em && !EMAIL_RE.test(em)) errs.email = "Enter a valid email address, or leave it empty.";
+    const nm = name.replace(/\s+/g, " ").trim();
+    if (!em) errs.email = "Enter your email so we can send your receipt.";
+    else if (!EMAIL_RE.test(em)) errs.email = "Enter a valid email address.";
+    if (!nm) errs.name = "Enter your name.";
     setFieldError(errs);
     setError("");
-    if (errs.amount || errs.email) return;
+    if (errs.amount || errs.email || errs.name) return;
     setBusyBoth(true);
     try {
       const s = await api<Session>(donateApi, {
         amount_cents: parseCents(amount),
-        email: em || undefined,
-        name: name.trim() || undefined,
+        email: em,
+        name: nm,
         message: message.trim() || undefined,
       });
       setSession(s);
@@ -166,14 +169,19 @@ function Donate({ className, label }: { className?: string; label: string }) {
     setError("");
     try {
       const em = email.trim().toLowerCase();
+      const [givenName, ...rest] = name.replace(/\s+/g, " ").trim().split(" ");
       const t = await card.current.tokenize({
         amount: (session.amount / 100).toFixed(2),
         currencyCode: "USD",
         intent: "CHARGE",
         customerInitiated: true,
         sellerKeyedIn: false,
-        // Square requires billingContact for CHARGE verification; it may be empty (email is optional here)
-        billingContact: em ? { email: em } : {},
+        // billing contact for Square's buyer verification (required by the SDK for CHARGE)
+        billingContact: {
+          email: em,
+          ...(givenName ? { givenName } : {}),
+          ...(rest.length ? { familyName: rest.join(" ") } : {}),
+        },
       });
       if (t.status !== "OK" || !t.token) {
         const msg = t.errors?.[0]?.message;
@@ -283,14 +291,13 @@ function Donate({ className, label }: { className?: string; label: string }) {
                 </p>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="donate-email">
-                  Email <span className="font-normal text-muted-foreground">(optional)</span>
-                </Label>
+                <Label htmlFor="donate-email">Email</Label>
                 <Input
                   id="donate-email"
                   type="email"
                   inputMode="email"
                   autoComplete="email"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   aria-invalid={!!fieldError.email}
@@ -298,21 +305,27 @@ function Donate({ className, label }: { className?: string; label: string }) {
                   className="h-10 focus-visible:border-primary focus-visible:ring-primary/30"
                 />
                 <p id="donate-email-help" className={cn("text-xs", fieldError.email ? "text-destructive" : "text-muted-foreground")}>
-                  {fieldError.email ?? "For a thank-you note. Never shared."}
+                  {fieldError.email ?? "Your receipt is sent here. Never shared."}
                 </p>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="donate-name">
-                  Name <span className="font-normal text-muted-foreground">(optional)</span>
-                </Label>
+                <Label htmlFor="donate-name">Name</Label>
                 <Input
                   id="donate-name"
                   autoComplete="name"
+                  required
                   maxLength={80}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  aria-invalid={!!fieldError.name}
+                  aria-describedby={fieldError.name ? "donate-name-err" : undefined}
                   className="h-10 focus-visible:border-primary focus-visible:ring-primary/30"
                 />
+                {fieldError.name && (
+                  <p id="donate-name-err" className="text-xs text-destructive">
+                    {fieldError.name}
+                  </p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="donate-message">
@@ -390,8 +403,15 @@ function Donate({ className, label }: { className?: string; label: string }) {
                 </p>
               </div>
               <p className="text-sm leading-6 text-muted-foreground">
-                {result.emailed ? "We sent a thank-you note to your email. " : ""}
-                {email.trim() ? "Your receipt is sent separately." : "Thanks for being part of the project."}
+                {result.emailed ? (
+                  <>A receipt is on its way to <span className="text-foreground">{result.email}</span>.</>
+                ) : (
+                  <>
+                    We couldn&apos;t email your receipt just now. Write to{" "}
+                    <a href={`mailto:${site.email}`} className="text-primary hover:underline">{site.email}</a>{" "}
+                    and we&apos;ll send it.
+                  </>
+                )}
               </p>
               <button type="button" onClick={close} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-10 w-full")}>
                 Close
