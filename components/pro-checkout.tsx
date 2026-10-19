@@ -51,12 +51,32 @@ const SDK = {
   production: "https://web.squarecdn.com/v1/square.js",
 } as const;
 
+// Square card box styling. Only the selectors and properties Square documents for
+// CardClassSelectors are used (developer.squareup.com/docs/web-payments/customize-styles).
+// Colors match the popup: --card #071226, Input bg (white 4% over card) #111c2f,
+// --input border over card #2a3344, --primary #ff7200 (Pay button), --destructive #ff6568,
+// --muted-foreground #9aa8c0, radius 12px (--radius, same as the email fields).
+// fontSize stays at 16px: Square's maximum, and it stops iOS from zooming into the field.
 const cardStyle = {
-  ".input-container": { borderColor: "#ffffff24", borderRadius: "10px" },
-  ".input-container.is-focus": { borderColor: "#017fea" },
+  ".input-container": {
+    borderColor: "#2a3344",
+    borderRadius: "12px",
+    borderWidth: "1px",
+  },
+  ".input-container.is-focus": { borderColor: "#ff7200" },
   ".input-container.is-error": { borderColor: "#ff6568" },
-  input: { backgroundColor: "#071226", color: "#f3f6fb" },
+  input: {
+    backgroundColor: "#111c2f",
+    color: "#f3f6fb",
+    fontFamily: "helvetica neue, sans-serif",
+    fontSize: "16px",
+    fontWeight: "normal",
+  },
+  "input.is-focus": { backgroundColor: "#111c2f", color: "#f3f6fb" },
+  "input.is-error": { color: "#ff6568" },
   "input::placeholder": { color: "#9aa8c0" },
+  "input.is-focus::placeholder": { color: "#6f7d96" },
+  "input.is-error::placeholder": { color: "#ff6568" },
   ".message-text": { color: "#9aa8c0" },
   ".message-icon": { color: "#9aa8c0" },
   ".message-text.is-error": { color: "#ff6568" },
@@ -301,7 +321,7 @@ export function ProCheckout({ className }: { className?: string }) {
                   onChange={(e) => setEmail(e.target.value)}
                   aria-invalid={!!fieldError.email}
                   aria-describedby="pro-email-help"
-                  className="h-10"
+                  className="h-10 focus-visible:border-primary focus-visible:ring-primary/30"
                 />
                 <p id="pro-email-help" className={cn("text-xs", fieldError.email ? "text-destructive" : "text-muted-foreground")}>
                   {fieldError.email ?? "Your license key is sent here."}
@@ -319,7 +339,7 @@ export function ProCheckout({ className }: { className?: string }) {
                   onChange={(e) => setConfirm(e.target.value)}
                   aria-invalid={!!fieldError.confirm}
                   aria-describedby={fieldError.confirm ? "pro-email2-err" : undefined}
-                  className="h-10"
+                  className="h-10 focus-visible:border-primary focus-visible:ring-primary/30"
                 />
                 {fieldError.confirm && (
                   <p id="pro-email2-err" className="text-xs text-destructive">
@@ -356,14 +376,36 @@ export function ProCheckout({ className }: { className?: string }) {
                   Change
                 </button>
               </div>
-              <div>
-                <div ref={cardRef} className="min-h-[89px]" />
-                {!cardReady && !error && (
-                  <p className="flex items-center gap-2 text-sm text-muted-foreground" role="status">
-                    <LoaderCircle className="size-4 animate-spin" aria-hidden />
-                    Loading card form…
-                  </p>
-                )}
+              <div role="group" aria-labelledby="pro-card-label" className="space-y-2">
+                <p id="pro-card-label" className="text-sm leading-none font-medium">
+                  Card details
+                </p>
+                {/* Square renders the card fields in its own iframe (PCI); in this popup's width
+                    it uses its two-line layout. The skeleton holds that space until it loads. */}
+                <div className="relative min-h-[118px]">
+                  <div
+                    ref={cardRef}
+                    className={cn("transition-opacity duration-300", cardReady ? "opacity-100" : "opacity-0")}
+                  />
+                  {!cardReady && !error && (
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-x-0 top-0 animate-pulse overflow-hidden rounded-xl bg-[#111c2f] ring-1 ring-[#2a3344] ring-inset"
+                    >
+                      <div className="flex h-12 items-center px-3.5">
+                        <div className="h-2.5 w-28 rounded-full bg-[#2a3344]" />
+                      </div>
+                      <div className="grid h-12 grid-cols-3 items-center border-t border-[#2a3344] px-3.5">
+                        <div className="h-2.5 w-12 rounded-full bg-[#2a3344]" />
+                        <div className="h-2.5 w-10 rounded-full bg-[#2a3344]" />
+                        <div className="h-2.5 w-10 rounded-full bg-[#2a3344]" />
+                      </div>
+                    </div>
+                  )}
+                  {!cardReady && !error && (
+                    <span className="sr-only" role="status">Loading card form…</span>
+                  )}
+                </div>
               </div>
               <ErrorNote message={error} />
               <button
