@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // STAGING copy of the site for testing the Square sandbox checkout.
+  //   NEXT_PUBLIC_PRO_CHECKOUT=on npm run build
+  //   npx wrangler deploy -c wrangler.staging.jsonc
+  // Separate Worker on workers.dev only: no routes, so it never touches nitrofirecomputing.com.
+  "name": "nitrofire-computing-staging",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-10-13",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/software", "/software/", "/rgbmatrixfx", "/rgbmatrixfx/", "/api/*"]
+  },
+  "services": [{ "binding": "LICENSE", "service": "rgbmatrixfx-license-staging" }]
+}

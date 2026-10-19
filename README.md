@@ -15,7 +15,11 @@ Open http://localhost:3000.
 
 `/` introduces Nitrofire Computing and the RGBMatrixFX products. The catalog is `/software`. The product page is `/rgbmatrixfx`. Pricing is `/pricing`. Support is `/support` (`/contact` shows the same page and points canonical URLs at `/support`). Refunds, terms, and privacy are `/refunds`, `/terms`, and `/privacy`.
 
-RGBMatrixFX Pro checkout is `proCheckoutUrl` in `lib/site.ts`. Leave it empty and the buy controls stay on “Coming soon”. Paste a Square payment link there when checkout is ready.
+RGBMatrixFX Pro checkout is a popup with Square’s card form (`components/pro-checkout.tsx`): email (entered twice), then the card, then the license key with a copy button and the download link. The site Worker forwards `/api/checkout*` to the license Worker through the `LICENSE` service binding, which charges the card with Square’s Payments API and mints the key; the browser only talks to this site. Square’s SDK is loaded from `sandbox.web.squarecdn.com` or `web.squarecdn.com`, whichever environment the license Worker reports. The site sends no Content-Security-Policy; if one is added, allow Square’s Web Payments SDK domains.
+
+The popup is off unless the site is built with `NEXT_PUBLIC_PRO_CHECKOUT=on`; otherwise every buy control stays on “Coming soon”.
+
+Staging (Square sandbox): `NEXT_PUBLIC_PRO_CHECKOUT=on npm run build && npx wrangler deploy -c wrangler.staging.jsonc` deploys the separate Worker `nitrofire-computing-staging` (workers.dev only), bound to `rgbmatrixfx-license-staging`.
 
 ## Production build
 
@@ -41,7 +45,7 @@ npx wrangler dev
 **`npx wrangler deploy` replaces that Worker.** The config binds two custom domains, `nitrofirecomputing.com` and `www.nitrofirecomputing.com`. Wrangler replaces that Worker’s custom-domain set with the hostnames in `routes`, so both must stay listed. `license.nitrofirecomputing.com` is a different Worker (`rgbmatrixfx-license`) and is not in this file. `workers_dev` and `preview_urls` stay enabled, matching the Worker before this repo’s first deploy.
 
 1. `npx wrangler login` with the account that owns the Worker.
-2. `npm run build`
+2. `npm run build` (add `NEXT_PUBLIC_PRO_CHECKOUT=on` once the license Worker has live Square settings)
 3. `npx wrangler deploy`
 
 Nothing in the npm scripts runs a deploy.

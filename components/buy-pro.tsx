@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
-import { proCheckoutHref, rgb } from "@/lib/site";
+import { ProCheckout } from "@/components/pro-checkout";
+import { proCheckoutEnabled, rgb } from "@/lib/site";
 import { cn } from "cn";
 
 export function BuyPro({
@@ -11,7 +12,6 @@ export function BuyPro({
   size?: "default" | "lg";
   className?: string;
 }) {
-  const href = proCheckoutHref();
   const comingSoonClass =
     tone === "product"
       ? "disabled:opacity-100 border-[#44d62c]/40 bg-transparent text-[#44d62c]"
@@ -21,7 +21,7 @@ export function BuyPro({
       ? "bg-[#44d62c] text-[#0b130a] hover:bg-[#5be044]"
       : undefined;
 
-  if (!href) {
+  if (!proCheckoutEnabled) {
     return (
       <button
         type="button"
@@ -38,13 +38,9 @@ export function BuyPro({
   }
 
   return (
-    <a
-      href={href}
+    <ProCheckout
       className={cn(buttonVariants({ size }), buyClass, className)}
-      rel="noopener noreferrer"
-    >
-      Buy Pro — {rgb.priceLabel}
-    </a>
+    />
   );
 }
 

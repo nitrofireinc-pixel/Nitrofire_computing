@@ -20,17 +20,17 @@ export const rgb = {
 } as const;
 
 /**
- * Square payment link for RGBMatrixFX Pro.
+ * RGBMatrixFX Pro checkout: a popup with Square's card form (components/pro-checkout.tsx).
+ * The site Worker forwards /api/checkout to the license Worker, which charges the card and
+ * returns the license key.
  *
- * Paste the live Square checkout URL here when it is ready.
- * Leave this as an empty string and every Buy control stays on "Coming soon".
+ * Off by default: every Buy control shows "Coming soon". Build with
+ * NEXT_PUBLIC_PRO_CHECKOUT=on to turn the Buy Pro popup on.
  */
-export const proCheckoutUrl: string = "";
+export const proCheckoutEnabled: boolean =
+  process.env.NEXT_PUBLIC_PRO_CHECKOUT === "on";
 
-export function proCheckoutHref(): string | null {
-  const url = proCheckoutUrl.trim();
-  return url.length > 0 ? url : null;
-}
+export const proCheckoutApi = "/api/checkout";
 
 export const nav = [
   { href: "/", label: "Home" },
