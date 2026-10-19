@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Download } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { BuyPro, ProCheckoutNote } from "@/components/buy-pro";
+import { DonateCallout } from "@/components/donate";
 import { DemoLoop } from "@/components/demo-loop";
 import { effects, razerNotice, rgb, site } from "@/lib/site";
 import { cn } from "cn";
@@ -379,6 +380,9 @@ export default function RgbMatrixFxPage() {
               .
             </p>
           </article>
+        </div>
+        <div className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6 [&:empty]:hidden">
+          <DonateCallout tone="product" className="-mt-8" />
         </div>
         <p className="mx-auto w-full max-w-6xl px-4 pb-16 text-xs leading-5 text-[#8c8c96] sm:px-6">
           {razerNotice}

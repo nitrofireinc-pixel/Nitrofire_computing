@@ -53,3 +53,13 @@ Nothing in the npm scripts runs a deploy.
 ## Why this deploy path
 
 The live site is a prerendered Next.js app (Turbopack `/_next` output, `cf-cache-status: HIT`) with no server data. A static export plus a small Worker for the `/software` and `/rgbmatrixfx` redirects matches that and deploys with Wrangler. Cloudflare’s current Next.js guide prefers [vinext](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/) for new apps that need the Next server runtime on Workers. This site does not: the pages are static, and the form never leaves the browser. OpenNext would add that same unused server runtime.
+
+## Donate button
+
+`NEXT_PUBLIC_DONATE=on` shows a "Support the project" block with a Donate button on
+`/rgbmatrixfx`, `/pricing` and `/support`. The popup takes any amount from $3 to $1,000
+(quick picks $3 / $5 / $10 / $20), optional email, name and message, then Square's card box.
+Requests go to `/api/donate*`, which this Worker forwards to the license Worker (same
+service binding as checkout). Without the flag nothing is rendered.
+
+    NEXT_PUBLIC_PRO_CHECKOUT=on NEXT_PUBLIC_DONATE=on npm run build

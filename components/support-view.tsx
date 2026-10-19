@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/contact-form";
+import { DonateCallout } from "@/components/donate";
 import { site } from "@/lib/site";
 
 export function SupportView() {
@@ -24,6 +25,7 @@ export function SupportView() {
           the message or open your mail client. For a refund, include the email
           used at checkout and your Square receipt.
         </p>
+        <DonateCallout className="mt-6 max-w-md sm:flex-col sm:items-start" />
       </div>
       <ContactForm />
     </div>
