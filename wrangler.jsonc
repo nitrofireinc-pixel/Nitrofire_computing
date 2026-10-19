@@ -17,6 +17,8 @@
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/software", "/software/", "/rgbmatrixfx", "/rgbmatrixfx/"]
-  }
+    "run_worker_first": ["/software", "/software/", "/rgbmatrixfx", "/rgbmatrixfx/", "/api/*"]
+  },
+  // Buy Pro popup: /api/checkout* is forwarded to the license Worker (worker/index.ts).
+  "services": [{ "binding": "LICENSE", "service": "rgbmatrixfx-license" }]
 }
