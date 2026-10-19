@@ -16,14 +16,17 @@ const json = (body: unknown, status: number) =>
 
 // The site is a static export. /software and /rgbmatrixfx are pages.
 // Files under /software/ (screenshots, the social image) are assets.
-// /api/checkout* (the Buy Pro popup) is forwarded to the license Worker, so the
-// browser only ever talks to this origin.
+// /api/checkout* (the Buy Pro popup) and /api/donate* (the Donate popup) are forwarded
+// to the license Worker, so the browser only ever talks to this origin.
 const worker = {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
-    if (url.pathname === "/api/checkout" || url.pathname.startsWith("/api/checkout/")) {
+    const checkout = url.pathname === "/api/checkout" || url.pathname.startsWith("/api/checkout/");
+    const donate = url.pathname === "/api/donate" || url.pathname.startsWith("/api/donate/");
+    if (checkout || donate) {
       if (!env.LICENSE) {
-        return json({ error: "Checkout isn't available right now. Please try again later.", code: "not_configured" }, 503);
+        const what = donate ? "Donations aren't" : "Checkout isn't";
+        return json({ error: `${what} available right now. Please try again later.`, code: "not_configured" }, 503);
       }
       const target = new URL(url.pathname + url.search, "https://license.internal");
       return env.LICENSE.fetch(new Request(target, request));

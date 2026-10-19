@@ -32,6 +32,14 @@ export const proCheckoutEnabled: boolean =
 
 export const proCheckoutApi = "/api/checkout";
 
+// Donate / "Support the project" button (Square, any amount from $3). Off unless the
+// build sets NEXT_PUBLIC_DONATE=on.
+export const donateEnabled: boolean = process.env.NEXT_PUBLIC_DONATE === "on";
+export const donateApi = "/api/donate";
+export const donateMinUsd = 3;
+export const donateMaxUsd = 1000;
+export const donateChips = [3, 5, 10, 20] as const;
+
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/software", label: "Software" },

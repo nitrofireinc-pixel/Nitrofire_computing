@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Download } from "lucide-react";
 import { BuyPro, ProCheckoutNote } from "@/components/buy-pro";
+import { DonateCallout } from "@/components/donate";
 import { buttonVariants } from "@/components/ui/button";
 import { rgb, site } from "@/lib/site";
 import { cn } from "cn";
@@ -91,6 +92,10 @@ export default function PricingPage() {
           <ProCheckoutNote className="mt-4 max-w-md text-sm leading-6 text-muted-foreground" />
         </article>
       </div>
+      <DonateCallout
+        className="mt-4"
+        text="Using the free app? You can support RGBMatrixFX with a one-off donation of any amount from $3. It helps fund new effects, more devices and fixes."
+      />
       <div className="mt-10 max-w-3xl space-y-3 text-sm leading-6 text-muted-foreground">
         <p>
           Pro runs with the free app. You need Linux and the OpenRazer driver
