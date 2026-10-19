@@ -49,12 +49,5 @@ export function BuyPro({
 }
 
 export function ProCheckoutNote({ className }: { className?: string }) {
-  const ready = proCheckoutHref() !== null;
-  return (
-    <p className={className}>
-      One-time purchase of {rgb.priceLabel}. Card payment {ready ? "is" : "will be"}{" "}
-      processed by Square. Nitrofire Computing is the seller. We do not store
-      your card number.
-    </p>
-  );
+  return <p className={className}>One-time purchase of {rgb.priceLabel}.</p>;
 }
