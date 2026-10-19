@@ -381,8 +381,9 @@ export function ProCheckout({ className }: { className?: string }) {
                   Card details
                 </p>
                 {/* Square renders the card fields in its own iframe (PCI); in this popup's width
-                    it uses its two-line layout. The skeleton holds that space until it loads. */}
-                <div className="relative min-h-[118px]">
+                    it uses its two-line layout: a 97px iframe plus its 45px message line (measured on
+                    Square SDK 1.87.0). The skeleton holds that space until it loads. */}
+                <div className="relative min-h-[142px]">
                   <div
                     ref={cardRef}
                     className={cn("transition-opacity duration-300", cardReady ? "opacity-100" : "opacity-0")}
