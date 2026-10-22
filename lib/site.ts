@@ -44,6 +44,7 @@ export const nav = [
   { href: "/", label: "Home" },
   { href: "/software", label: "Software" },
   { href: "/rgbmatrixfx", label: "RGBMatrixFX" },
+  { href: "/effects", label: "Effects" },
   { href: "/pricing", label: "Pricing" },
   { href: "/support", label: "Support" },
 ] as const;
