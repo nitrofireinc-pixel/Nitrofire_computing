@@ -1,0 +1,10 @@
+{
+ "format": "rgbmatrixfx-pro-content",
+ "v": 2,
+ "kid": "C1",
+ "enc": "chacha20-poly1305",
+ "nonce": "mbQmtVlPFoW0X3jo",
+ "ct": "0RIG1FrFK9tBt2zm3YuKVT8hMORXvGUlqtOnWh5lttRBTnCgLLUr2tmAWoH8uFbZdDUgX0LQi42otpizwI8BZ9iu9jPBrAI8JGfavI8BnzdSP9GLtz6QFONMB_fD3xfZnXa17oLAQiYEnzpYdekrS3qgmBrI-5TjRF7JU_MaNgehfwma5iGmsqv2EvI9i-0fmcuBMF0H-Ho_TsgEIwvU0TroVHBm3iywsacc0bgL5Y1i0nIqT91qdKlz4MSRzOTg-qlTah9fAP6abdOjXLEPHPbm98iC5NucjSx9ke7a-TOYYiFqmBoW7WctAbF9U-NPKUeERRmHCOVAygQekaOTcUTpXti3ou0RjbGbs1ccNNN9BqcF4uHljHB5Zh9sW-B-6pwElYtSrOzGqbgj5ev4qc1FsEcCf4npOA1QFFdomr7gnu1DPyYwHWHc8bmZV7U7SxbkUqQ6SPzhHv_IJyYiFvelsfBG_SSmHtI2pTvfx0L-JGhwHgvi-Gi3Dmqjqq-VjxVs7LbO7VQDhCOLOddOsBcBzNbP9sd2OzquBIfs6XaBxOt1kcJMCthDZnNYpL9-sN394qsouYMVj-n7YJB_KGMncZZAFs3xBGzK9X7w1Y_A2zSd6QQQDwtBLP3tHidBbzT_-sHluPyXFBIVtdWyXzYD_Z-sqVe97W8aCCK7zqNGRzLRur3MoKyjWYhERCC_48kbuV9XeFELA1MK5sGHaV-SXJdHXqdCX0kgyTLac7jbWtIqBk00hvTBdPyL4oGLKEx-ugD2RFGSMe0R387Mz6YVzP9kD__B4Gj13539fSL1Z6vio72nEJDyoP9S_mQIwNStDQa6VzyrxPyeI0U-7IVYea17HHxcMQwXU_TBchrbN0KVbzGP-A",
+ "sig": "lazvhk0fERIc4v6zRz4s6Ks3ylB4mrCRoIbOlxxSHo5y9NCT5rlxd4Hcg8P72uJEKQKuT2DDOjc3NConE0c5Bg",
+ "note": "RGBMatrixFX Pro content. Import with File > Import presets in RGBMatrixFX Pro."
+}
