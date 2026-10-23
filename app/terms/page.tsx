@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { LegalPage } from "@/components/legal-page";
 import { rgb, site } from "@/lib/site";
@@ -7,11 +8,7 @@ const title = "Terms of Service";
 const description =
   "Terms for RGBMatrixFX, RGBMatrixFX Pro, and the Nitrofire Computing website. Nitrofire Computing is the seller. Square processes card payments.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: `${site.url}/terms` },
-};
+export const metadata: Metadata = pageMeta("/terms", title, description);
 
 export default function TermsPage() {
   return (

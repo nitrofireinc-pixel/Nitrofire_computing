@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { Download } from "lucide-react";
@@ -11,16 +12,7 @@ const title = "Software";
 const description =
   "Software from Nitrofire Computing. RGBMatrixFX is a free Linux lighting app. RGBMatrixFX Pro is a one-time add-on.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: `${site.url}/software` },
-  openGraph: {
-    title: `${title} · ${site.name}`,
-    description,
-    url: `${site.url}/software`,
-  },
-};
+export const metadata: Metadata = pageMeta("/software", title, description);
 
 export default function SoftwarePage() {
   return (

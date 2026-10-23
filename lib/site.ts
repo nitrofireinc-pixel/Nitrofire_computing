@@ -10,7 +10,7 @@ export const site = {
 
 export const rgb = {
   name: "RGBMatrixFX",
-  version: "1.2.1",
+  version: "1.2.3",
   priceUsd: "9.99",
   priceLabel: "$9.99 USD",
   releases: "https://github.com/nitrofireinc-pixel/RGBMatrixFX/releases/latest",
