@@ -50,8 +50,11 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: "/nitrofire-computing-logo.png",
-    apple: "/nitrofire-computing-logo.png",
+    icon: [
+      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: { url: "/apple-icon-180.png", sizes: "180x180" },
   },
 };
 
