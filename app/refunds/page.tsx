@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { LegalPage } from "@/components/legal-page";
 import { rgb, site } from "@/lib/site";
@@ -6,11 +7,7 @@ import { rgb, site } from "@/lib/site";
 const title = "Refund Policy";
 const description = `Refunds for RGBMatrixFX Pro, a one-time ${rgb.priceLabel} purchase from Nitrofire Computing. Payments are processed by Square.`;
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: `${site.url}/refunds` },
-};
+export const metadata: Metadata = pageMeta("/refunds", title, description);
 
 export default function RefundsPage() {
   return (

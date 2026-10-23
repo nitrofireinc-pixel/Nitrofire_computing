@@ -54,11 +54,24 @@ const jsonLd = {
   codeRepository: rgb.source,
   license: rgb.license,
   image: `${site.url}/software/01-main-flame.webp`,
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
+  offers: [
+    {
+      "@type": "Offer",
+      name: "RGBMatrixFX (free, open source)",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${site.url}/rgbmatrixfx`,
+    },
+    {
+      "@type": "Offer",
+      name: "RGBMatrixFX Pro add-on (one-time)",
+      price: rgb.priceUsd,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${site.url}/pricing`,
+    },
+  ],
   author: {
     "@type": "Organization",
     name: site.name,

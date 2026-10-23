@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { Download } from "lucide-react";
 import { BuyPro, ProCheckoutNote } from "@/components/buy-pro";
@@ -10,16 +11,7 @@ import { cn } from "cn";
 const title = "Pricing";
 const description = `RGBMatrixFX is free. RGBMatrixFX Pro is ${rgb.priceLabel}, paid once, for holiday and premium effects and whole-PC RGB sync.`;
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: `${site.url}/pricing` },
-  openGraph: {
-    title: `${title} · ${site.name}`,
-    description,
-    url: `${site.url}/pricing`,
-  },
-};
+export const metadata: Metadata = pageMeta("/pricing", title, description);
 
 const freePoints = [
   "14 tunable effects, including Flame, Wave, Aurora and Starlight",

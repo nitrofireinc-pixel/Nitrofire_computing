@@ -13,6 +13,15 @@ export const metadata: Metadata = {
     title: site.name,
     description: site.description,
     url: `${site.url}/`,
+    siteName: site.name,
+    type: "website",
+    images: [{ url: "/nitrofire-computing-logo.png", width: 1107, height: 849, alt: "Nitrofire Computing logo" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.description,
+    images: [{ url: "/nitrofire-computing-logo.png", alt: "Nitrofire Computing logo" }],
   },
 };
 

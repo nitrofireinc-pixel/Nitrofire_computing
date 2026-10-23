@@ -2,16 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/legal-page";
 import { site } from "@/lib/site";
+import { pageMeta } from "@/lib/seo";
 
 const title = "Privacy Policy";
 const description =
   "How Nitrofire Computing handles support email and RGBMatrixFX Pro purchases. Square processes card payments. We do not store card numbers.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: `${site.url}/privacy` },
-};
+export const metadata: Metadata = pageMeta("/privacy", title, description);
 
 export default function PrivacyPage() {
   return (
