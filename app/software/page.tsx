@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Download } from "lucide-react";
 import { BuyPro } from "@/components/buy-pro";
+import { FreeDownloadLink } from "@/components/free-download";
 import { buttonVariants } from "@/components/ui/button";
 import { rgb, site } from "@/lib/site";
 import { cn } from "cn";
@@ -51,13 +52,10 @@ export default function SoftwarePage() {
             <Link href="/rgbmatrixfx" className={cn(buttonVariants())}>
               Product page
             </Link>
-            <a
-              href={rgb.releases}
-              className={cn(buttonVariants({ variant: "outline" }))}
-            >
+            <FreeDownloadLink className={cn(buttonVariants({ variant: "outline" }))}>
               <Download />
               Download
-            </a>
+            </FreeDownloadLink>
           </div>
         </article>
         <article className="flex flex-col rounded-xl border border-primary/40 bg-card/80 p-6 ring-1 ring-primary/20">

@@ -150,3 +150,55 @@
   .hw-bat svg { width: 100px; height: 44px; filter: drop-shadow(0 0 10px rgba(255,255,255,.75)) drop-shadow(0 0 24px rgba(255,255,255,.4)); }
 }
 .hw-bat { color: #000; opacity: 0.97; } /* black silhouette outlined by the white glow */
+
+
+
+/* Post-download donation card: bottom sheet on phones, centered dialog on desktop. */
+dialog.download-donate-shell {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  box-shadow: none;
+}
+dialog.download-donate-shell[open] {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.download-donate-card {
+  width: 100%;
+  max-width: 100%;
+  max-height: min(90dvh, 40rem);
+  overflow: auto;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  padding: 1.5rem;
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+}
+.download-donate-card .sheet-handle {
+  display: block;
+  width: 2.5rem;
+  height: 0.25rem;
+  margin: -0.35rem auto 1rem;
+  border-radius: 999px;
+  background: var(--input);
+}
+@media (min-width: 721px) {
+  dialog.download-donate-shell[open] {
+    align-items: center;
+  }
+  .download-donate-card {
+    width: calc(100% - 2rem);
+    max-width: 28rem;
+    border-radius: var(--radius-2xl);
+    padding: 1.75rem;
+  }
+  .download-donate-card .sheet-handle {
+    display: none;
+  }
+}

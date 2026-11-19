@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { DonateHost } from "@/components/donate";
+import { DownloadDonateCard } from "@/components/download-donate-card";
 import { HalloweenOverlay } from "@/components/halloween-overlay";
 import { HolidayThemes } from "@/components/holiday-themes";
 import { site } from "@/lib/site";
@@ -72,6 +74,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </div>
         <HalloweenOverlay />
         <HolidayThemes />
+        <DonateHost />
+        <DownloadDonateCard />
       </body>
     </html>
   );

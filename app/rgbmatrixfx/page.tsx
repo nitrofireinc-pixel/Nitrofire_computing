@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Download } from "lucide-react";
+import { FreeDownloadLink } from "@/components/free-download";
 import { buttonVariants } from "@/components/ui/button";
 import { BuyPro, ProCheckoutNote } from "@/components/buy-pro";
 import { DonateCallout } from "@/components/donate";
@@ -211,10 +212,10 @@ export default function RgbMatrixFxPage() {
               OpenRazer driver. Open source, from Nitrofire Computing.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a href={rgb.releases} className={greenButton}>
+              <FreeDownloadLink className={greenButton}>
                 <Download />
                 Download on GitHub
-              </a>
+              </FreeDownloadLink>
               <a href={rgb.source} className={quietButton}>
                 View source
               </a>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Download } from "lucide-react";
 import { BuyPro, ProCheckoutNote } from "@/components/buy-pro";
 import { DonateCallout } from "@/components/donate";
+import { FreeDownloadLink } from "@/components/free-download";
 import { buttonVariants } from "@/components/ui/button";
 import { rgb, site } from "@/lib/site";
 import { cn } from "cn";
@@ -56,13 +57,10 @@ export default function PricingPage() {
               </li>
             ))}
           </ul>
-          <a
-            href={rgb.releases}
-            className={cn(buttonVariants({ size: "lg" }), "mt-8 w-fit")}
-          >
+          <FreeDownloadLink className={cn(buttonVariants({ size: "lg" }), "mt-8 w-fit")}>
             <Download />
             Download on GitHub
-          </a>
+          </FreeDownloadLink>
         </article>
         <article className="flex flex-col rounded-xl border border-primary/40 bg-card/80 p-6 ring-1 ring-primary/20">
           <p className="font-mono text-xs tracking-[0.22em] text-primary uppercase">

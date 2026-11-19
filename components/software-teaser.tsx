@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Download } from "lucide-react";
+import { FreeDownloadLink } from "@/components/free-download";
 import { buttonVariants } from "@/components/ui/button";
-import { rgb } from "@/lib/site";
 import { cn } from "cn";
 
 export function SoftwareTeaser() {
@@ -46,8 +46,7 @@ export function SoftwareTeaser() {
                 >
                   Learn more
                 </Link>
-                <a
-                  href={rgb.releases}
+                <FreeDownloadLink
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
                     "border-[#2b2b33] bg-transparent text-[#e8e8ea] hover:bg-[#202026] hover:text-[#e8e8ea] dark:border-[#2b2b33] dark:bg-transparent dark:hover:bg-[#202026]",
@@ -55,7 +54,7 @@ export function SoftwareTeaser() {
                 >
                   <Download />
                   Download on GitHub
-                </a>
+                </FreeDownloadLink>
               </div>
             </div>
             <div className="relative">

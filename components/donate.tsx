@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CardSkeleton, ErrorNote } from "@/components/square-card";
 import { donateApi, donateChips, donateEnabled, donateMaxUsd, donateMinUsd, site } from "@/lib/site";
+import { amountError, OPEN_DONATE_EVENT, parseCents, rememberDownloadDonate, openDonateCheckout, type OpenDonateDetail } from "@/lib/donate";
 import { api, cardStyle, EMAIL_RE, loadSquare, SDK, type SquareCard, type SquareEnv } from "@/lib/square";
 import { cn } from "cn";
 
@@ -23,25 +24,8 @@ type Result = { amount: number; email: string; emailed: boolean; test: boolean }
 type Step = "amount" | "card" | "done";
 type FieldErrors = { amount?: string; email?: string; name?: string };
 
-const AMOUNT_RE = /^\d{1,7}(\.\d{1,2})?$/;
 const fmt = (cents: number) =>
   "$" + (cents % 100 ? (cents / 100).toFixed(2) : (cents / 100).toLocaleString("en-US"));
-
-/** "12.50" / "$12.5" / "1,000" -> cents, or null if it isn't a plain dollar amount */
-function parseCents(raw: string): number | null {
-  const s = raw.replace(/[$,\s]/g, "");
-  if (!AMOUNT_RE.test(s)) return null;
-  return Math.round(Number(s) * 100);
-}
-
-function amountError(raw: string): string | undefined {
-  if (!raw.trim()) return "Enter an amount.";
-  const c = parseCents(raw);
-  if (c === null) return "Enter an amount in dollars, like 5 or 12.50.";
-  if (c < donateMinUsd * 100) return `Minimum is $${donateMinUsd}.`;
-  if (c > donateMaxUsd * 100) return `Maximum is $${donateMaxUsd.toLocaleString("en-US")}.`;
-  return undefined;
-}
 
 export function DonateButton({
   className,
@@ -56,12 +40,29 @@ export function DonateButton({
   return <Donate className={cn(buttonVariants({ variant, size: "lg" }), className)} label={label} />;
 }
 
+/** Mount once (in the root layout) so the checkout can be opened from any page. */
+export function DonateHost() {
+  if (!donateEnabled) return null;
+  return <DonateDialog />;
+}
+
 function Donate({ className, label }: { className?: string; label: string }) {
+  return (
+    <button type="button" onClick={() => openDonateCheckout()} aria-haspopup="dialog" className={className}>
+      <Heart aria-hidden />
+      {label}
+    </button>
+  );
+}
+
+function DonateDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const card = useRef<SquareCard | null>(null);
   const busyRef = useRef(false);
+  const stepRef = useRef<Step>("amount");
   const [step, setStep] = useState<Step>("amount");
+  stepRef.current = step;
   const [amount, setAmount] = useState("10");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -78,16 +79,17 @@ function Donate({ className, label }: { className?: string; label: string }) {
     setBusy(v);
   };
 
-  const open = () => {
+  const open = useCallback((preset?: string) => {
     setError("");
-    if (step === "done") {
-      // a fresh donation each time the popup is reopened after a thank-you
+    setFieldError({});
+    if (stepRef.current === "done") {
       setStep("amount");
       setSession(null);
       setResult(null);
     }
+    if (preset) setAmount(preset);
     dialogRef.current?.showModal();
-  };
+  }, []);
 
   const close = useCallback(() => {
     if (busyRef.current) return;
@@ -103,6 +105,15 @@ function Donate({ className, label }: { className?: string; label: string }) {
     d.addEventListener("cancel", onCancel);
     return () => d.removeEventListener("cancel", onCancel);
   }, []);
+
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const amount = (e as CustomEvent<OpenDonateDetail>).detail?.amount;
+      open(amount);
+    };
+    window.addEventListener(OPEN_DONATE_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_DONATE_EVENT, onOpen);
+  }, [open]);
 
   useEffect(() => {
     if (step !== "card" || !session || !cardRef.current) return;
@@ -190,6 +201,7 @@ function Donate({ className, label }: { className?: string; label: string }) {
       const r = await api<Result>(`${donateApi}/${session.id}/pay`, { token: session.token, source_id: t.token });
       setResult(r);
       setStep("done");
+      rememberDownloadDonate();
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -201,10 +213,6 @@ function Donate({ className, label }: { className?: string; label: string }) {
 
   return (
     <>
-      <button type="button" onClick={open} aria-haspopup="dialog" className={className}>
-        <Heart aria-hidden />
-        {label}
-      </button>
       <dialog
         ref={dialogRef}
         aria-labelledby="donate-title"

@@ -62,4 +62,10 @@ The live site is a prerendered Next.js app (Turbopack `/_next` output, `cf-cache
 Requests go to `/api/donate*`, which this Worker forwards to the license Worker (same
 service binding as checkout). Without the flag nothing is rendered.
 
+The same flag also wires the free RGBMatrixFX Download buttons: the GitHub Releases
+page opens in a new tab immediately, then a thank-you card offers a one-time
+donation ($3 / $5 / $10, or Other). Donate opens this same Square checkout with
+the chosen amount. Dismissing the card or completing a donation is remembered in
+`localStorage` so it does not nag.
+
     NEXT_PUBLIC_PRO_CHECKOUT=on NEXT_PUBLIC_DONATE=on npm run build
