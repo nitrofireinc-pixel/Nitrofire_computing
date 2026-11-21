@@ -14,7 +14,7 @@ export default function imageLoader({
 }) {
   if (src.startsWith("/software/") && src.endsWith(".webp")) {
     const base = src.slice(0, -".webp".length);
-    if (/-\d+$/.test(base) || base.endsWith("/og") || base.endsWith("demo-poster")) {
+    if (/-\d+$/.test(base) || base.endsWith("/og") || base.endsWith("demo-poster") || src.includes("/onionfruitux/")) {
       return src;
     }
     const variant = width <= 750 ? "720" : "1440";

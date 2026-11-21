@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SoftwareTeaser } from "@/components/software-teaser";
 import { BuyPro, ProCheckoutNote } from "@/components/buy-pro";
 import { buttonVariants } from "@/components/ui/button";
-import { rgb, site } from "@/lib/site";
+import { onion, rgb, site } from "@/lib/site";
 import { cn } from "cn";
 
 export const metadata: Metadata = {
@@ -108,6 +109,51 @@ export default function HomePage() {
                 Compare Free and Pro
               </Link>
             </div>
+          </article>
+        </div>
+      </section>
+      <section className="border-t border-border/70">
+        <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+          <article className="grid items-center gap-8 rounded-xl border border-border bg-card/80 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+            <div>
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/software/onionfruitux/onionfruitux.svg"
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="size-9 rounded-md"
+                />
+                <p className="font-mono text-xs tracking-[0.22em] text-brand-blue uppercase">
+                  Also from us
+                </p>
+              </div>
+              <h2 className="mt-4 text-2xl font-semibold">OnionFruitux</h2>
+              <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground">
+                A free Linux app with one switch: apps that follow the system
+                proxy go through Tor. Turn it off and your previous settings
+                come back. Licensed GPL-3.0-or-later.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link href={onion.page} className={cn(buttonVariants())}>
+                  See OnionFruitux
+                </Link>
+                <Link
+                  href="/software"
+                  className={cn(buttonVariants({ variant: "outline" }))}
+                >
+                  All software
+                </Link>
+              </div>
+            </div>
+            <Image
+              src="/software/onionfruitux/desktop-on.webp"
+              alt="Illustration of a Linux desktop with the OnionFruitux window open and the switch on"
+              width={1440}
+              height={900}
+              sizes="(min-width:1024px) 520px, 100vw"
+              className="h-auto w-full rounded-xl ring-1 ring-border"
+            />
           </article>
         </div>
       </section>

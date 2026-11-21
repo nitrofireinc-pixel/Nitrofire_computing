@@ -1,7 +1,7 @@
 export const site = {
   name: "Nitrofire Computing",
   description:
-    "Nitrofire Computing publishes independent software for Linux. RGBMatrixFX is a free, open-source lighting app, with an optional Pro add-on.",
+    "Nitrofire Computing publishes independent software for Linux. RGBMatrixFX is a free lighting app, with an optional Pro add-on. OnionFruitux is a free app that sends system-proxy apps through Tor.",
   tagline: "Independent software for Linux.",
   url: "https://nitrofirecomputing.com",
   email: "nitrofireinc@gmail.com",
@@ -40,10 +40,23 @@ export const donateMinUsd = 3;
 export const donateMaxUsd = 1000;
 export const donateChips = [3, 5, 10, 20] as const;
 
+export const onion = {
+  name: "OnionFruitux",
+  version: "1.0.6",
+  releases: "https://github.com/nitrofireinc-pixel/OnionFruitux/releases/latest",
+  source: "https://github.com/nitrofireinc-pixel/OnionFruitux",
+  license: "https://www.gnu.org/licenses/gpl-3.0.html",
+  page: "/onionfruitux",
+} as const;
+
+export const onionNotice =
+  "OnionFruitux is an independent Nitrofire Computing project. It is not affiliated with or endorsed by The Tor Project or DragonFruit Network. Tor is a trademark of The Tor Project. OnionFruit is a trademark of DragonFruit Network.";
+
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/software", label: "Software" },
   { href: "/rgbmatrixfx", label: "RGBMatrixFX" },
+  { href: "/onionfruitux", label: "OnionFruitux" },
   { href: "/effects", label: "Effects" },
   { href: "/pricing", label: "Pricing" },
   { href: "/support", label: "Support" },
@@ -60,6 +73,7 @@ export const policiesUpdated = "18 October 2026";
 export const supportTopics = [
   { value: "rgbmatrixfx", label: "RGBMatrixFX" },
   { value: "pro", label: "RGBMatrixFX Pro" },
+  { value: "onionfruitux", label: "OnionFruitux" },
   { value: "purchase", label: "A purchase or refund" },
   { value: "other", label: "Something else" },
 ] as const;
