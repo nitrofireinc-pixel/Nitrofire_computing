@@ -119,7 +119,7 @@ const quietButton = cn(
 
 export default function OnionFruiTuxPage() {
   return (
-    <div className="flex flex-1 flex-col bg-[#111113] text-[#e8e8ea]">
+    <div className="flex min-w-0 flex-1 flex-col overflow-x-clip bg-[#111113] text-[#e8e8ea]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -129,7 +129,7 @@ export default function OnionFruiTuxPage() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(640px_320px_at_78%_45%,#7c5cbf28,transparent_70%)]"
         />
-        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:py-20">
+        <div className="relative mx-auto grid w-full min-w-0 max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:py-20">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-2">
               <Image
@@ -166,7 +166,7 @@ export default function OnionFruiTuxPage() {
               </a>
             </div>
           </div>
-          <figure className="relative">
+          <figure className="relative min-w-0 max-w-full">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-[#7c5cbf]/20 blur-2xl"
@@ -207,8 +207,8 @@ export default function OnionFruiTuxPage() {
       </section>
 
       <section className="border-b border-[#2b2b33]">
-        <div className="mx-auto grid w-full max-w-6xl gap-4 px-4 py-16 sm:px-6 lg:grid-cols-2">
-          <article className="rounded-xl bg-[#18181c] p-6 ring-1 ring-[#2b2b33]">
+        <div className="mx-auto grid w-full min-w-0 max-w-6xl gap-4 px-4 py-16 sm:px-6 lg:grid-cols-2">
+          <article className="min-w-0 rounded-xl bg-[#18181c] p-6 ring-1 ring-[#2b2b33]">
             <p className="font-mono text-xs tracking-[0.22em] text-[#7c5cbf] uppercase">
               Install
             </p>
@@ -231,7 +231,7 @@ export default function OnionFruiTuxPage() {
               panel icon with the same switch.
             </p>
           </article>
-          <article className="rounded-xl bg-[#18181c] p-6 ring-1 ring-[#2b2b33]">
+          <article className="min-w-0 rounded-xl bg-[#18181c] p-6 ring-1 ring-[#2b2b33]">
             <p className="font-mono text-xs tracking-[0.22em] text-[#7c5cbf] uppercase">
               Downloads
             </p>
@@ -257,7 +257,7 @@ export default function OnionFruiTuxPage() {
               </a>
               . One-line installer:
             </p>
-            <pre className="mt-3 overflow-x-auto rounded-lg bg-[#111113] p-3 text-xs leading-6 text-[#e8e8ea] ring-1 ring-[#2b2b33]">
+            <pre className="mt-3 max-w-full min-w-0 overflow-x-auto rounded-lg bg-[#111113] p-3 text-xs leading-6 text-[#e8e8ea] ring-1 ring-[#2b2b33]">
               <code>
                 {`curl -fsSL https://raw.githubusercontent.com/nitrofireinc-pixel/OnionFruitux/main/get.sh | sudo bash`}
               </code>

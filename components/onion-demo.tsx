@@ -33,7 +33,7 @@ export function OnionDemo() {
       alt="Illustration of a Linux desktop with the OnionFruiTux window open, the switch on, and the exit country set to the United States."
       width={1440}
       height={900}
-      className="h-auto w-full"
+      className="h-auto w-full max-w-full"
     />
   );
 
@@ -44,7 +44,7 @@ export function OnionDemo() {
   return (
     <video
       ref={videoRef}
-      className="h-auto w-full"
+      className="h-auto w-full max-w-full"
       autoPlay
       muted
       loop
@@ -62,6 +62,7 @@ export function OnionDemo() {
         alt="Illustration of OnionFruiTux on a Linux desktop. The switch turns from off, through connecting, to on."
         width={800}
         height={500}
+        className="h-auto w-full max-w-full"
       />
     </video>
   );
