@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Desktop illustration of OnionFruitux: a looping off-to-on switch,
+ * Desktop illustration of OnionFruiTux: a looping off-to-on switch,
  * with the still image used as the poster and for reduced motion.
  */
 export function OnionDemo() {
@@ -30,7 +30,7 @@ export function OnionDemo() {
   const still = (
     <img
       src="/software/onionfruitux/desktop-on.webp"
-      alt="Illustration of a Linux desktop with the OnionFruitux window open, the switch on, and the exit country set to the United States."
+      alt="Illustration of a Linux desktop with the OnionFruiTux window open, the switch on, and the exit country set to the United States."
       width={1440}
       height={900}
       className="h-auto w-full"
@@ -53,13 +53,13 @@ export function OnionDemo() {
       poster="/software/onionfruitux/desktop-on.webp"
       width={1280}
       height={800}
-      aria-label="Illustration of OnionFruitux on a Linux desktop. The switch turns from off, through connecting, to on."
+      aria-label="Illustration of OnionFruiTux on a Linux desktop. The switch turns from off, through connecting, to on."
     >
       <source src="/software/onionfruitux/desktop-switch.webm" type="video/webm" />
       <source src="/software/onionfruitux/desktop-switch.mp4" type="video/mp4" />
       <img
         src="/software/onionfruitux/desktop-switch.gif"
-        alt="Illustration of OnionFruitux on a Linux desktop. The switch turns from off, through connecting, to on."
+        alt="Illustration of OnionFruiTux on a Linux desktop. The switch turns from off, through connecting, to on."
         width={800}
         height={500}
       />
@@ -71,7 +71,7 @@ export function OnionStill({ className }: { className?: string }) {
   return (
     <img
       src="/software/onionfruitux/desktop-on.webp"
-      alt="Illustration of a Linux desktop with the OnionFruitux window open and the switch on."
+      alt="Illustration of a Linux desktop with the OnionFruiTux window open and the switch on."
       width={1440}
       height={900}
       className={className ?? "h-auto w-full"}

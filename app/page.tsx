@@ -128,7 +128,7 @@ export default function HomePage() {
                   Also from us
                 </p>
               </div>
-              <h2 className="mt-4 text-2xl font-semibold">OnionFruitux</h2>
+              <h2 className="mt-4 text-2xl font-semibold">OnionFruiTux</h2>
               <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground">
                 A free Linux app with one switch: apps that follow the system
                 proxy go through Tor. Turn it off and your previous settings
@@ -136,7 +136,7 @@ export default function HomePage() {
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href={onion.page} className={cn(buttonVariants())}>
-                  See OnionFruitux
+                  See OnionFruiTux
                 </Link>
                 <Link
                   href="/software"
@@ -148,7 +148,7 @@ export default function HomePage() {
             </div>
             <Image
               src="/software/onionfruitux/desktop-on.webp"
-              alt="Illustration of a Linux desktop with the OnionFruitux window open and the switch on"
+              alt="Illustration of a Linux desktop with the OnionFruiTux window open and the switch on"
               width={1440}
               height={900}
               sizes="(min-width:1024px) 520px, 100vw"

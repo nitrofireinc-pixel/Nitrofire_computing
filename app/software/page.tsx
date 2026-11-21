@@ -11,7 +11,7 @@ import { cn } from "cn";
 
 const title = "Software";
 const description =
-  "Software from Nitrofire Computing. RGBMatrixFX is a free Linux lighting app, with an optional Pro add-on. OnionFruitux is a free Linux Tor app.";
+  "Software from Nitrofire Computing. RGBMatrixFX is a free Linux lighting app, with an optional Pro add-on. OnionFruiTux is a free Linux Tor app.";
 
 export const metadata: Metadata = pageMeta("/software", title, description);
 
@@ -26,7 +26,7 @@ export default function SoftwarePage() {
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
         Nitrofire Computing publishes software you install and run. RGBMatrixFX
-        is the lighting app. The base app is free. Pro is optional. OnionFruitux
+        is the lighting app. The base app is free. Pro is optional. OnionFruiTux
         is a free app that sends system-proxy apps through Tor.
       </p>
       <div className="mt-12 grid gap-4 lg:grid-cols-2">
@@ -95,7 +95,7 @@ export default function SoftwarePage() {
                   Free · open source
                 </p>
               </div>
-              <h2 className="mt-4 text-2xl font-semibold">OnionFruitux</h2>
+              <h2 className="mt-4 text-2xl font-semibold">OnionFruiTux</h2>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 A Linux switch that sends apps which follow the system proxy
                 through Tor. Turn it off and your previous proxy settings are
@@ -114,7 +114,7 @@ export default function SoftwarePage() {
             </div>
             <Image
               src="/software/onionfruitux/desktop-on.webp"
-              alt="Illustration of a Linux desktop with the OnionFruitux window open and the switch on"
+              alt="Illustration of a Linux desktop with the OnionFruiTux window open and the switch on"
               width={1440}
               height={900}
               sizes="(min-width:1024px) 420px, 100vw"

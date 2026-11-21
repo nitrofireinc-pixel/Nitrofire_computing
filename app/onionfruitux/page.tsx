@@ -7,7 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { onion, onionNotice, site } from "@/lib/site";
 import { cn } from "cn";
 
-const title = "OnionFruitux — a one-switch Tor app for Linux";
+const title = "OnionFruiTux — a one-switch Tor app for Linux";
 const description =
   "Free, open-source Linux app that sends apps which follow the system proxy through Tor. One switch, optional exit country, and a clean restore when you turn it off.";
 
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         url: "/software/onionfruitux/og.png",
         width: 1200,
         height: 630,
-        alt: "OnionFruitux on a Linux desktop, with the switch on",
+        alt: "OnionFruiTux on a Linux desktop, with the switch on",
       },
     ],
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "OnionFruitux",
+  name: "OnionFruiTux",
   applicationCategory: "SecurityApplication",
   operatingSystem: "Linux",
   softwareVersion: onion.version,
@@ -54,7 +54,7 @@ const jsonLd = {
   image: `${site.url}/software/onionfruitux/og.png`,
   offers: {
     "@type": "Offer",
-    name: "OnionFruitux (free, open source)",
+    name: "OnionFruiTux (free, open source)",
     price: "0",
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
@@ -91,7 +91,7 @@ const features = [
   {
     n: "05",
     title: "A clean switch-off",
-    body: "The previous proxy settings are saved first. If the app closes or crashes while the switch is on, the next start offers to restore them. OnionFruitux does not change the firewall, DNS, ProtonVPN, or Tailscale.",
+    body: "The previous proxy settings are saved first. If the app closes or crashes while the switch is on, the next start offers to restore them. OnionFruiTux does not change the firewall, DNS, ProtonVPN, or Tailscale.",
   },
   {
     n: "06",
@@ -117,7 +117,7 @@ const quietButton = cn(
   "border-[#3a3548] bg-transparent text-[#f4f1ea] hover:bg-[#221f2e] hover:text-[#f4f1ea] dark:border-[#3a3548] dark:bg-transparent dark:hover:bg-[#221f2e]",
 );
 
-export default function OnionFruituxPage() {
+export default function OnionFruiTuxPage() {
   return (
     <div className="flex flex-1 flex-col bg-[#111113] text-[#e8e8ea]">
       <script
@@ -139,7 +139,7 @@ export default function OnionFruituxPage() {
                 height={28}
                 className="size-7 rounded-md"
               />
-              <p className="text-sm font-medium">OnionFruitux</p>
+              <p className="text-sm font-medium">OnionFruiTux</p>
               <span className="text-[#8c8c96]" aria-hidden="true">
                 ·
               </span>
@@ -151,7 +151,7 @@ export default function OnionFruituxPage() {
               One switch, through Tor.
             </h1>
             <p className="max-w-lg text-base leading-7 text-[#8c8c96] sm:text-lg">
-              OnionFruitux is a Linux app that sends apps which follow the
+              OnionFruiTux is a Linux app that sends apps which follow the
               system proxy through the Tor network. Open the window, turn the
               switch on, and those apps leave through Tor. Turn it off and they
               use the normal network again.
@@ -175,7 +175,7 @@ export default function OnionFruituxPage() {
               <OnionDemo />
             </div>
             <figcaption className="mt-3 text-center text-sm text-[#8c8c96]">
-              Illustration of the OnionFruitux window on a Linux desktop. The
+              Illustration of the OnionFruiTux window on a Linux desktop. The
               loop shows the switch going from off, to connecting, to on, with
               the exit country already set.
             </figcaption>
@@ -226,7 +226,7 @@ export default function OnionFruituxPage() {
             </ul>
             <p className="mt-6 text-sm leading-6 text-[#8c8c96]">
               The first time you turn the switch on, the desktop asks for an
-              admin password so OnionFruitux can start its own Tor. You can also
+              admin password so OnionFruiTux can start its own Tor. You can also
               pin it to the dock or run <code className="text-[#e8e8ea]">onionfruitux tray</code> for a
               panel icon with the same switch.
             </p>
@@ -235,13 +235,11 @@ export default function OnionFruituxPage() {
             <p className="font-mono text-xs tracking-[0.22em] text-[#7c5cbf] uppercase">
               Downloads
             </p>
-            <h2 className="mt-3 text-xl font-semibold">Get OnionFruitux</h2>
+            <h2 className="mt-3 text-xl font-semibold">Get OnionFruiTux</h2>
             <p className="mt-3 text-sm leading-6 text-[#8c8c96]">
-              The latest packaged release is {onion.version}, from 10 October
-              2026. The current source on GitHub, from 16 October 2026, sends
-              apps through the system proxy and restores your previous settings
-              when the switch turns off. Those changes are not in a newer
-              package yet. To use them now, install from the source repository.
+              The current release is {onion.version}. It sends apps that follow
+              the system proxy through Tor, restores your previous settings when
+              the switch turns off, and checks that traffic is using Tor.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href={onion.releases} className={accentButton}>
@@ -265,8 +263,7 @@ export default function OnionFruituxPage() {
               </code>
             </pre>
             <p className="mt-3 text-sm leading-6 text-[#8c8c96]">
-              That command installs the latest packaged release, not the newer
-              source on the main branch.
+              That command installs the latest packaged release.
             </p>
           </article>
         </div>
@@ -275,7 +272,7 @@ export default function OnionFruituxPage() {
       <section>
         <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
           <p className="text-sm leading-6 text-[#8c8c96]">
-            OnionFruitux is the Linux counterpart to DragonFruit Network&apos;s
+            OnionFruiTux is the Linux counterpart to DragonFruit Network&apos;s
             OnionFruit, written independently by {site.name} and licensed{" "}
             <a href={onion.license} className="text-[#c4b5fd] hover:underline">
               GPL-3.0-or-later
